@@ -1,8 +1,32 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src",
+  "sourceRoot": "apps/food-nutrition-calculator/src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/food-nutrition-calculator/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/food-nutrition-calculator",
+  "projects": {
+    "food-nutrition-calculator": {
+      "type": "application",
+      "root": "apps/food-nutrition-calculator",
+      "entryFile": "main",
+      "sourceRoot": "apps/food-nutrition-calculator/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/food-nutrition-calculator/tsconfig.app.json"
+      }
+    },
+    "image-manager-app": {
+      "type": "application",
+      "root": "apps/image-manager-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/image-manager-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/image-manager-app/tsconfig.app.json"
+      }
+    }
   }
 }
