@@ -1,31 +1,31 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/food-nutrition-calculator/src",
+  "sourceRoot": "apps/api-gateway/src",
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true,
-    "tsConfigPath": "apps/food-nutrition-calculator/tsconfig.app.json"
+    "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
   },
   "monorepo": true,
-  "root": "apps/food-nutrition-calculator",
+  "root": "apps/api-gateway",
   "projects": {
-    "food-nutrition-calculator": {
+    "api-gateway": {
       "type": "application",
-      "root": "apps/food-nutrition-calculator",
+      "root": "apps/api-gateway",
       "entryFile": "main",
-      "sourceRoot": "apps/food-nutrition-calculator/src",
+      "sourceRoot": "apps/api-gateway/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/food-nutrition-calculator/tsconfig.app.json"
+        "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
       }
     },
-    "image-manager-app": {
+    "image-service": {
       "type": "application",
-      "root": "apps/image-manager-app",
+      "root": "apps/image-service",
       "entryFile": "main",
-      "sourceRoot": "apps/image-manager-app/src",
+      "sourceRoot": "apps/image-service/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/image-manager-app/tsconfig.app.json"
+        "tsConfigPath": "apps/image-service/tsconfig.app.json"
       }
     }
   }
