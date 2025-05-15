@@ -1,10 +1,19 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
+import { ConfigModule } from '@nestjs/config';
+
 import { AppService } from './app.service';
+import { AppController } from './app.controller';
+import { ImageManagerModule } from './modules/image-manager/image-manager.module';
+import { RabbitMQService } from './messaging/rabbitmq/rabbitmq.service';
 
 @Module({
-  imports: [],
+  imports: [
+    ImageManagerModule,
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+    }),
+  ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, RabbitMQService],
 })
 export class AppModule {}

@@ -1,14 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { ImageManagerAppModule } from './../src/image-manager-app.module';
+import { ImageServiceModule } from '../src/image-service.module';
 
 describe('ImageManagerAppController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [ImageManagerAppModule],
+      imports: [ImageServiceModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();

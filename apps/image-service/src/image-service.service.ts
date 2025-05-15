@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class ImageManagerAppService {
+export class ImageServiceService {
   getHello(): string {
     return 'Hello World!';
   }
