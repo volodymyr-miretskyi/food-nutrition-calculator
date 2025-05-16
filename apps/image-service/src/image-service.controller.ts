@@ -1,5 +1,5 @@
-import { Controller } from '@nestjs/common';
-import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
+import { Controller, Get } from '@nestjs/common';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 
 import { ImageServiceService } from './image-service.service';
 import { IMAGE_SERVICE_EVENTS } from '@/constants';
@@ -8,8 +8,14 @@ import { IMAGE_SERVICE_EVENTS } from '@/constants';
 export class ImageServiceController {
   constructor(private readonly imageServiceService: ImageServiceService) {}
 
-  @EventPattern(IMAGE_SERVICE_EVENTS.UPLOAD)
+  @Get()
+  getHello(): string {
+    return this.imageServiceService.getHello();
+  }
+
+  @MessagePattern({ cmd: IMAGE_SERVICE_EVENTS.UPLOAD })
   async handleUploadImage(@Payload() params: any) {
-    return this.imageServiceService.uploadImage(params);
+    const result = await this.imageServiceService.uploadImage(params);
+    return result;
   }
 }

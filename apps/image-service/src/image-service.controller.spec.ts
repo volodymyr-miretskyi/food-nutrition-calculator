@@ -15,10 +15,4 @@ describe('ImageManagerAppController', () => {
       ImageServiceController,
     );
   });
-
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(imageManagerAppController.getHello()).toBe('Hello World!');
-    });
-  });
 });

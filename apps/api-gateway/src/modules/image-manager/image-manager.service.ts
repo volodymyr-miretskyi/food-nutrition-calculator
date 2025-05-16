@@ -10,7 +10,10 @@ export class ImageManagerService {
   ) {}
 
   async uploadImage(params: any) {
-    const result = this.client.emit(IMAGE_SERVICE_EVENTS.UPLOAD, params);
+    const result = this.client.send(
+      { cmd: IMAGE_SERVICE_EVENTS.UPLOAD },
+      params,
+    );
     return result;
   }
 }
