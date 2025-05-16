@@ -4,7 +4,6 @@ import { ConfigModule } from '@nestjs/config';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 import { ImageManagerModule } from './modules/image-manager/image-manager.module';
-import { RabbitMQService } from './messaging/rabbitmq/rabbitmq.service';
 
 @Module({
   imports: [
@@ -14,6 +13,6 @@ import { RabbitMQService } from './messaging/rabbitmq/rabbitmq.service';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, RabbitMQService],
+  providers: [AppService],
 })
 export class AppModule {}

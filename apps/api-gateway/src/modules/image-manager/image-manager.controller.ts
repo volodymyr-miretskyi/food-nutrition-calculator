@@ -1,14 +1,14 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Inject, Post } from '@nestjs/common';
 
 import { ImageManagerService } from './image-manager.service';
 
-@Controller('image-manager')
+@Controller('image-service')
 export class ImageManagerController {
-  constructor(private readonly imageManagerService: ImageManagerService) {}
+  constructor(@Inject() private readonly client: ImageManagerService) {}
 
-  @Post()
-  async uploadImage() {
-    const result = await this.imageManagerService.uploadImage();
+  @Post('upload')
+  async uploadImage(@Body() params: any) {
+    const result = this.client.uploadImage(params);
     return result;
   }
 }
