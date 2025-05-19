@@ -18,7 +18,11 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@libs/*": ["./libs/*"],
+      "@dto/*": ["./libs/common/dto/*"],
+      "@interfaces/*": ["./libs/common/interfaces/*"],
+      "@models/*": ["./libs/common/models/*"]
     }
   }
 }
