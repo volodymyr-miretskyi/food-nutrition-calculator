@@ -6,7 +6,8 @@ export class ImageServiceService {
     return 'Hello World!';
   }
 
-  async uploadImage(params) {
-    return params;
+  async uploadImage(file: Express.Multer.File) {
+    const filename = file.originalname;
+    return { filename };
   }
 }

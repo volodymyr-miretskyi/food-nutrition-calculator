@@ -1,4 +1,11 @@
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import {
+  Controller,
+  Inject,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 import { ImageManagerService } from './image-manager.service';
 
@@ -7,8 +14,9 @@ export class ImageManagerController {
   constructor(@Inject() private readonly client: ImageManagerService) {}
 
   @Post('upload')
-  async uploadImage(@Body() params: any) {
-    const result = this.client.uploadImage(params);
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadImage(@UploadedFile() file: Express.Multer.File) {
+    const result = this.client.uploadImage(file);
     return result;
   }
 }
