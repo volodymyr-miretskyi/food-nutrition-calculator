@@ -9,8 +9,8 @@ export class ImageServiceController {
   constructor(private readonly imageServiceService: ImageServiceService) {}
 
   @MessagePattern({ cmd: IMAGE_SERVICE_EVENTS.UPLOAD })
-  async handleUploadImage(@Payload() params: Express.Multer.File) {
-    const result = await this.imageServiceService.uploadImage(params);
+  async handleUploadImage(@Payload() file: Express.Multer.File) {
+    const result = await this.imageServiceService.uploadImage(file);
     return result;
   }
 }

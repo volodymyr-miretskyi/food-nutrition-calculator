@@ -27,23 +27,27 @@ export class S3Service {
   }
 
   async upload(file: Express.Multer.File): Promise<S3UploadResult> {
-    const key = `uploads/${uuidv4()}-${file.originalname}`;
-    const buffer = Buffer.from(file.buffer);
+    try {
+      const key = `uploads/${uuidv4()}-${file.originalname}`;
+      const buffer = Buffer.from(file.buffer);
 
-    await this.s3.send(
-      new PutObjectCommand({
-        Key: key,
-        Body: buffer,
-        Bucket: this.bucket,
-        ContentType: file.mimetype,
-      }),
-    );
+      await this.s3.send(
+        new PutObjectCommand({
+          Key: key,
+          Body: buffer,
+          Bucket: this.bucket,
+          ContentType: file.mimetype,
+        }),
+      );
 
-    return {
-      url: `https://${this.bucket}.s3.${this.region}.amazonaws.com/${key}`,
-      name: file.originalname,
-      type: file.mimetype,
-      size: file.size,
-    };
+      return {
+        url: `https://${this.bucket}.s3.${this.region}.amazonaws.com/${key}`,
+        name: file.originalname,
+        type: file.mimetype,
+        size: file.size,
+      };
+    } catch (error) {
+      throw new Error('Error uploading file to S3: ' + error);
+    }
   }
 }

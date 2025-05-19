@@ -9,11 +9,8 @@ export class ImageManagerService {
     @Inject(SERVICES.IMAGE_SERVICE) private readonly client: ClientProxy,
   ) {}
 
-  async uploadImage(params: Express.Multer.File) {
-    const result = this.client.send(
-      { cmd: IMAGE_SERVICE_EVENTS.UPLOAD },
-      params,
-    );
+  async uploadImage(file: Express.Multer.File) {
+    const result = this.client.send({ cmd: IMAGE_SERVICE_EVENTS.UPLOAD }, file);
     return result;
   }
 }
