@@ -22,7 +22,8 @@
       "@libs/*": ["./libs/*"],
       "@dto/*": ["./libs/common/dto/*"],
       "@interfaces/*": ["./libs/common/interfaces/*"],
-      "@models/*": ["./libs/common/models/*"]
+      "@db/*": ["./libs/db/*"],
+      "@schemas/*": ["./libs/db/schemas/*"]
     }
   }
 }

@@ -5,7 +5,7 @@ import { ImageServiceModule } from './image-service.module';
 import { DEFAULT_RABBIT_MQ_URL, QUEUES } from '@/constants';
 
 async function bootstrap() {
-  const RABBIT_MQ_URL = process.env.RABBIT_MQ_URL || DEFAULT_RABBIT_MQ_URL;
+  const RABBIT_MQ_URL = process.env.RABBIT_MQ_URL ?? DEFAULT_RABBIT_MQ_URL;
 
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     ImageServiceModule,
