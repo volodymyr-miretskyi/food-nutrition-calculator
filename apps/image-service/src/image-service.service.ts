@@ -13,10 +13,6 @@ export class ImageServiceService {
     private readonly s3: S3Service,
   ) {}
 
-  getHello(): string {
-    return 'Hello World!';
-  }
-
   async uploadImage(file: Express.Multer.File) {
     const s3result = await this.s3.upload(file);
     const params: SavePhotoDto = {

@@ -1,4 +1,5 @@
 export const SERVICES = {
   AUTH_SERVICE: 'AUTH_SERVICE',
   IMAGE_SERVICE: 'IMAGE_SERVICE',
+  AI_SERVICE: 'AI_SERVICE',
 } as const;

@@ -1,4 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class AiServiceService {}
+export class AiService {
+  async analyzeImage(params: any) {
+    return params;
+  }
+}
