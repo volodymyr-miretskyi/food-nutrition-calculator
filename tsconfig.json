@@ -18,24 +18,13 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@db/*": [
-        "./libs/db/*"
-      ],
-      "@dto/*": [
-        "./libs/common/dto/*"
-      ],
-      "@interfaces/*": [
-        "./libs/common/interfaces/*"
-      ],
-      "@libs/*": [
-        "./libs/*"
-      ],
-      "@schemas/*": [
-        "./libs/db/schemas/*"
-      ]
+      "@/*": ["./*"],
+      "@db/*": ["./libs/db/*"],
+      "@dto/*": ["./libs/common/dto/*"],
+      "@repositories/*": ["./libs/common/repositories/*"],
+      "@interfaces/*": ["./libs/common/interfaces/*"],
+      "@libs/*": ["./libs/*"],
+      "@schemas/*": ["./libs/db/schemas/*"]
     }
   }
 }

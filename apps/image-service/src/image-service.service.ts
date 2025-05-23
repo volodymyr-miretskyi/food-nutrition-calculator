@@ -1,26 +1,25 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Inject, Injectable } from '@nestjs/common';
 
 import { S3Service } from '@libs/aws/s3/src/s3.service';
-import { Photo } from '@db/schemas/photo.schema';
-import { SavePhotoDto } from '@dto/photo.dto';
+
+import { ImageRepository } from '@repositories/image/image.repository';
+import { Image } from '@schemas/image.schema';
 
 @Injectable()
 export class ImageServiceService {
   constructor(
-    @InjectModel(Photo.name) private photoModal: Model<Photo>,
+    @Inject() private imageRepository: ImageRepository,
     private readonly s3: S3Service,
   ) {}
 
   async uploadImage(file: Express.Multer.File) {
     const s3result = await this.s3.upload(file);
-    const params: SavePhotoDto = {
+    const params: Image = {
       ...s3result,
     };
 
-    const photo = await this.photoModal.create(params);
+    const image = await this.imageRepository.saveImage(params);
 
-    return photo;
+    return image;
   }
 }
