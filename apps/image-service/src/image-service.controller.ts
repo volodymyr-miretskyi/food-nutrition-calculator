@@ -13,4 +13,10 @@ export class ImageServiceController {
     const result = await this.imageService.uploadImage(file);
     return result;
   }
+
+  @MessagePattern({ cmd: IMAGE_SERVICE_EVENTS.GET_ALL })
+  async handleGetAllImages() {
+    const images = await this.imageService.getAllImages();
+    return images;
+  }
 }

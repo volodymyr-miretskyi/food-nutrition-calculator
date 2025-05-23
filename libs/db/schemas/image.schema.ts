@@ -6,10 +6,10 @@ export type ImageDocument = HydratedDocument<Image>;
 @Schema()
 export class Image {
   @Prop()
-  url: string;
+  name: string;
 
   @Prop()
-  name: string;
+  key: string;
 
   @Prop()
   type: string;

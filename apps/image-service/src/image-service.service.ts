@@ -22,4 +22,21 @@ export class ImageServiceService {
 
     return image;
   }
+
+  async getAllImages() {
+    const images = await this.imageRepository.getAllImages();
+
+    const imagesWithUrl = await Promise.all(
+      images.map(async (image) => {
+        const url = await this.s3.getPresignedUrl(image.key, 300);
+
+        return {
+          ...image,
+          url,
+        };
+      }),
+    );
+
+    return imagesWithUrl;
+  }
 }

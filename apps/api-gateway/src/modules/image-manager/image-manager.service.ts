@@ -13,4 +13,9 @@ export class ImageManagerService {
     const result = this.client.send({ cmd: IMAGE_SERVICE_EVENTS.UPLOAD }, file);
     return result;
   }
+
+  async getAllImages() {
+    const result = this.client.send({ cmd: IMAGE_SERVICE_EVENTS.GET_ALL }, {});
+    return result;
+  }
 }

@@ -15,4 +15,9 @@ export class ImageRepository {
     const result = await image.save();
     return result;
   }
+
+  async getAllImages(): Promise<Image[]> {
+    const images = await this.imageSchema.find().lean();
+    return images;
+  }
 }

@@ -1,9 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import {
+  S3Client,
+  PutObjectCommand,
+  GetObjectCommand,
+} from '@aws-sdk/client-s3';
 import { v4 as uuidv4 } from 'uuid';
 
 import { S3UploadResult } from '@interfaces/s3/s3.interface';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 @Injectable()
 export class S3Service {
@@ -41,13 +46,26 @@ export class S3Service {
       );
 
       return {
-        url: `https://${this.bucket}.s3.${this.region}.amazonaws.com/${key}`,
         name: file.originalname,
         type: file.mimetype,
         size: file.size,
+        key,
       };
     } catch (error) {
       throw new Error('Error uploading file to S3: ' + error);
     }
+  }
+
+  async getPresignedUrl(key: string, expiresIn = 3600): Promise<string> {
+    const command = new GetObjectCommand({
+      Bucket: this.bucket,
+      Key: key,
+    });
+
+    const signedUrl = await getSignedUrl(this.s3, command, {
+      expiresIn: expiresIn,
+    });
+
+    return signedUrl;
   }
 }

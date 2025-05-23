@@ -1,5 +1,6 @@
 import {
   Controller,
+  Get,
   Inject,
   Post,
   UploadedFile,
@@ -17,6 +18,12 @@ export class ImageManagerController {
   @UseInterceptors(FileInterceptor('file'))
   async uploadImage(@UploadedFile() file: Express.Multer.File) {
     const result = this.client.uploadImage(file);
+    return result;
+  }
+
+  @Get('get-all')
+  async getAllImages() {
+    const result = this.client.getAllImages();
     return result;
   }
 }
