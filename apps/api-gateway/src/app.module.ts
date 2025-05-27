@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import { ImageManagerModule } from './modules/image-manager/image-manager.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { AiModule } from './modules/ai/ai.module';
+import { RecordsModule } from './modules/records/records.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), AuthModule, ImageManagerModule, AiModule],
+  imports: [ConfigModule.forRoot(), AuthModule, RecordsModule, RecordsModule],
 })
 export class AppModule {}

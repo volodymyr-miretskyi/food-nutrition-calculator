@@ -6,18 +6,19 @@ import {
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
+
 import { FileInterceptor } from '@nestjs/platform-express';
+import { RecordsService } from './records.service';
 
-import { ImageManagerService } from './image-manager.service';
 
-@Controller('image-service')
-export class ImageManagerController {
-  constructor(@Inject() private readonly client: ImageManagerService) {}
+@Controller('records')
+export class RecordsController {
+  constructor(@Inject() private readonly client: RecordsService) {}
 
-  @Post('upload')
+  @Post('analyze-image')
   @UseInterceptors(FileInterceptor('file'))
   async uploadImage(@UploadedFile() file: Express.Multer.File) {
-    const result = this.client.uploadImage(file);
+    const result = this.client.analyzeImage(file);
     return result;
   }
 
