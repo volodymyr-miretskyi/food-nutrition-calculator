@@ -13,7 +13,7 @@ export class AIRepository {
     });
   }
 
-  async analyzeImage(imageUrl: string) {
+  async analyzeImage<T>(imageUrl: string): Promise<T> {
     const response = await this.openAIClient.responses.create({
       model: OPENAI_MODELS.GPT_4_O,
       input: [
@@ -34,6 +34,11 @@ export class AIRepository {
 
     const output = response.output[0];
 
-    return output
+    if (output.type === 'message' && output.content[0].type === 'output_text') {
+      const result = JSON.parse(output.content[0].text);
+      return result;
+    }
+
+    throw new Error('Unexpected response format from OpenAI');
   }
 }

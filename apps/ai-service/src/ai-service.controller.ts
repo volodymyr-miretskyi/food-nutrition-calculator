@@ -1,6 +1,7 @@
 import { Controller } from '@nestjs/common';
-import { AiService } from './ai-service.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
+
+import { AiService } from './ai-service.service';
 import { AI_SERVICE_EVENTS } from '@/constants';
 
 @Controller()

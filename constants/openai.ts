@@ -12,7 +12,7 @@ export const OPENAI_PROMPTS = {
     "ingredients": [
     {
       name: "назва продукту",
-      quantity: "приблизна вага продукту",
+      quantity: "приблизна вага продукту (лише число)",
       unit: "одиниця виміру (г, кг, мл, л тощо)"
     }
     ]

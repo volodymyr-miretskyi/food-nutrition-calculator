@@ -1,21 +1,15 @@
-import { AIRepository } from '@/libs/common/repositories/ai/ai.repository';
-import { Injectable } from '@nestjs/common';
+import { IAnalyzeImageResponse } from '@/libs/common/interfaces/ai-service/ai-service.interface';
+import { Inject, Injectable } from '@nestjs/common';
+
+import { AIRepository } from '@repositories/ai/ai.repository';
 
 @Injectable()
 export class AiService {
-  constructor(private readonly aiRepository: AIRepository) {}
+  constructor(@Inject() private readonly aiRepository: AIRepository) {}
 
-  async analyzeImage(imageUrl: string) {
-    const response = await this.aiRepository.analyzeImage(imageUrl);
-
-    if (
-      response.type === 'message' &&
-      response.content[0].type === 'output_text'
-    ) {
-      const result = JSON.parse(response.content[0].text);
-      return result;
-    }
-
-    throw new Error('Unexpected response format from OpenAI');
+  async analyzeImage(imageUrl: string): Promise<IAnalyzeImageResponse> {
+    const response =
+      await this.aiRepository.analyzeImage<IAnalyzeImageResponse>(imageUrl);
+    return response;
   }
 }
