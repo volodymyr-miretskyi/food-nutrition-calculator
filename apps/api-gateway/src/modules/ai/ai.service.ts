@@ -9,15 +9,10 @@ export class AiService {
     @Inject(SERVICES.AI_SERVICE) private readonly client: ClientProxy,
   ) {}
 
-  async analyzeImage() {
-    //MOCK DATA
-    const params = {
-      image: 'some image data',
-    };
-
+  async analyzeImage(imageUrl: string) {
     const result = this.client.send(
       { cmd: AI_SERVICE_EVENTS.ANALYZE_IMAGE },
-      params,
+      imageUrl,
     );
     return result;
   }
