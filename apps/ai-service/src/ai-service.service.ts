@@ -1,41 +1,18 @@
-import OpenAI from 'openai';
+import { AIRepository } from '@/libs/common/repositories/ai/ai.repository';
 import { Injectable } from '@nestjs/common';
-
-import { OPENAI_MODELS, OPENAI_PROMPTS } from '@/constants';
 
 @Injectable()
 export class AiService {
-  private openAIClient: OpenAI;
-
-  constructor() {
-    this.openAIClient = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-    });
-  }
+  constructor(private readonly aiRepository: AIRepository) {}
 
   async analyzeImage(imageUrl: string) {
-    const response = await this.openAIClient.responses.create({
-      model: OPENAI_MODELS.GPT_4_O,
-      input: [
-        { role: 'user', content: OPENAI_PROMPTS.ANALYZE_IMAGE },
-        {
-          role: 'user',
+    const response = await this.aiRepository.analyzeImage(imageUrl);
 
-          content: [
-            {
-              type: 'input_image',
-              image_url: imageUrl,
-              detail: 'high',
-            },
-          ],
-        },
-      ],
-    });
-
-    const output = response.output[0];
-
-    if (output.type === 'message' && output.content[0].type === 'output_text') {
-      const result = JSON.parse(output.content[0].text);
+    if (
+      response.type === 'message' &&
+      response.content[0].type === 'output_text'
+    ) {
+      const result = JSON.parse(response.content[0].text);
       return result;
     }
 
