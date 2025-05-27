@@ -8,8 +8,8 @@ export class AiServiceController {
   constructor(private readonly aiService: AiService) {}
 
   @MessagePattern({ cmd: AI_SERVICE_EVENTS.ANALYZE_IMAGE })
-  async analyzeImage(@Payload() params: any) {
-    const result = await this.aiService.analyzeImage(params);
+  async analyzeImage(@Payload() imageUrl: string) {
+    const result = await this.aiService.analyzeImage(imageUrl);
     return result;
   }
 }
