@@ -21,6 +21,7 @@
       "@/*": ["./*"],
       "@db/*": ["./libs/db/*"],
       "@dto/*": ["./libs/common/dto/*"],
+      "@utils/*": ["./libs/common/utils/*"],
       "@repositories/*": ["./libs/common/repositories/*"],
       "@interfaces/*": ["./libs/common/interfaces/*"],
       "@libs/*": ["./libs/*"],
