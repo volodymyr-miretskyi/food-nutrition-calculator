@@ -5,17 +5,18 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { DBModule } from '@db/src/db.module';
 import { S3Module } from '@/libs/aws/s3/src/s3.module';
-import { Record, RecordSchema } from '@schemas/record.schema';
+import { Meal, MealSchema } from '@schemas/record.schema';
 import { DEFAULT_RABBIT_MQ_URL, QUEUES, SERVICES } from '@/constants';
 
-import { RecordsController } from './records.controller';
-import { RecordsService } from './records.service';
+import { MealsController } from './meals.controller';
+import { MealsService } from './meals.service';
+import { MealsRepository } from '@repositories/meals/meals.repository';
 
 @Module({
   imports: [
     DBModule,
     S3Module,
-    MongooseModule.forFeature([{ name: Record.name, schema: RecordSchema }]),
+    MongooseModule.forFeature([{ name: Meal.name, schema: MealSchema }]),
     ClientsModule.registerAsync([
       {
         name: SERVICES.IMAGE_SERVICE,
@@ -51,7 +52,7 @@ import { RecordsService } from './records.service';
       },
     ]),
   ],
-  controllers: [RecordsController],
-  providers: [RecordsService],
+  controllers: [MealsController],
+  providers: [MealsService, MealsRepository],
 })
-export class RecordsModule {}
+export class MealsModule {}
