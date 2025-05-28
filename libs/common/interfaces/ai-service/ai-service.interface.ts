@@ -17,3 +17,7 @@ export interface INutrient {
 export interface IAnalyzeImageResponse {
   ingredients: IIngredient[];
 }
+
+export interface ICalculateNutrientsResponse {
+  nutrients: INutrient[];
+}

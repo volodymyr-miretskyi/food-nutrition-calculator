@@ -9,4 +9,5 @@ export const IMAGE_SERVICE_EVENTS = {
 
 export const AI_SERVICE_EVENTS = {
   ANALYZE_IMAGE: 'ai.analyze-image',
+  CALCULATE_NUTRIENTS: 'ai.calculate-nutrients',
 } as const;
