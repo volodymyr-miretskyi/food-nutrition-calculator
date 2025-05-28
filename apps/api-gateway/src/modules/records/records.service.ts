@@ -33,6 +33,9 @@ export class RecordsService {
     return result;
   }
 
+  //TODO: Calculate nutrients
+  async calculateNutrients() {}
+
   async getAllImages() {
     const result = this.imageClient.send(
       { cmd: IMAGE_SERVICE_EVENTS.GET_ALL },
