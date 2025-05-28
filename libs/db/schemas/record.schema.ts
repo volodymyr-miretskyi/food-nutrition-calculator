@@ -7,10 +7,10 @@ import {
 } from '@interfaces/ai-service/ai-service.interface';
 import { Image } from './image.schema';
 
-export type RecordsDocument = HydratedDocument<Record>;
+export type MealsDocument = HydratedDocument<Meal>;
 
 @Schema({ timestamps: true })
-export class Record {
+export class Meal {
   @Prop()
   name: string;
 
@@ -33,4 +33,4 @@ export class Record {
   feedback?: string;
 }
 
-export const RecordSchema = SchemaFactory.createForClass(Record);
+export const MealSchema = SchemaFactory.createForClass(Meal);
