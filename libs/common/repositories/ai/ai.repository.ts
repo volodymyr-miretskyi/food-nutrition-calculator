@@ -2,6 +2,7 @@ import OpenAI from 'openai';
 import { Injectable } from '@nestjs/common';
 
 import { OPENAI_MODELS, OPENAI_PROMPTS } from '@/constants';
+import { extractJsonCodeBlockFromAIResponse } from '@utils/extractJSON';
 
 @Injectable()
 export class AIRepository {
@@ -35,6 +36,8 @@ export class AIRepository {
     const output = response.output[0];
 
     if (output.type === 'message' && output.content[0].type === 'output_text') {
+      console.log('output.content[0].text', output.content[0].text);
+
       const result = JSON.parse(output.content[0].text);
       return result;
     }

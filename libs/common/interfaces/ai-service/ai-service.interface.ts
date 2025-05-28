@@ -8,6 +8,12 @@ export interface IIngredient {
   unit: string;
 }
 
+export interface INutrient {
+  name: string;
+  quantity: string;
+  unit: string;
+}
+
 export interface IAnalyzeImageResponse {
   ingredients: IIngredient[];
 }
