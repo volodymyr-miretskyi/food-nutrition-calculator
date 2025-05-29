@@ -57,7 +57,7 @@ export class MealsService {
   }
 
   async getAllRecords() {
-    const records = await this.mealsRepository.getAlMeals();
+    const records = await this.mealsRepository.getAllMeals();
     return records;
   }
 }
