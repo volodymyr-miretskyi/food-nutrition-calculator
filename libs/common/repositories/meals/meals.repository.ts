@@ -16,7 +16,7 @@ export class MealsRepository {
     return result;
   }
 
-  async getAlMeals(): Promise<Meal[]> {
+  async getAllMeals(): Promise<Meal[]> {
     const images = await this.mealSchema.find().lean();
     return images;
   }
